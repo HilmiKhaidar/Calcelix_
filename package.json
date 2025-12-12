@@ -2,16 +2,7 @@
   "name": "calcetix",
   "version": "1.0.0",
   "description": "Beautiful calculator made simple - by Lunetix",
-  "main": "index.html",
-  "scripts": {
-    "dev": "echo 'Development mode'",
-    "build": "echo 'Static build complete'",
-    "start": "echo 'Static site ready'"
-  },
   "keywords": ["calculator", "lunetix", "calcetix", "math", "pwa"],
   "author": "Lunetix Team",
-  "license": "MIT",
-  "engines": {
-    "node": ">=14.0.0"
-  }
+  "license": "MIT"
 }
