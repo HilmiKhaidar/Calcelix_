@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Calcetix - Beautiful Calculator Made Simple</title>
+    <meta name="description" content="Calcetix by Lunetix - A beautiful, intuitive calculator that makes math simple and elegant">
+    <meta name="theme-color" content="#FBBF24">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Calcetix">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="120" height="120" rx="24" fill="url(#splashGradient)"/>
+                    <path d="M30 45h60M30 60h60M30 75h60M45 30v60M75 30v60" stroke="white" stroke-width="6" stroke-linecap="round"/>
+                    <defs>
+                        <linearGradient id="splashGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FBBF24"/>
+                            <stop offset="100%" style="stop-color:#F59E0B"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="splash-text">
+                <h1 class="splash-brand-name">CALCETIX</h1>
+                <p class="splash-tagline">by Lunetix</p>
+                <p class="splash-subtitle">Precision in every calculation</p>
+                <p class="splash-version">v1.0.0</p>
+            </div>
+            <div class="splash-loading">
+                <div class="loading-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="app-container hidden">
+        <!-- Status Bar Spacer for Android -->
+        <div class="status-bar-spacer"></div>
+
+        <!-- Calculator Full Screen -->
+        <main class="calculator-main">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="top-btn" id="infoBtn" title="About Calcetix">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4"/>
+                        <path d="M12 8h.01"/>
+                    </svg>
+                </button>
+                <button class="top-btn" id="historyBtn" title="History">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                </button>
+
+                <button class="top-btn" id="themeBtn" title="Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+                <button class="top-btn" id="soundBtn" title="Sound">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Display Area -->
+            <div class="display-area">
+
+                <div class="display-secondary" id="previousOperand"></div>
+                <div class="display-primary" id="currentOperand">0</div>
+                <button class="copy-btn" id="copyBtn" title="Copy Result">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Buttons Area -->
+            <div class="buttons-area">
+                <!-- Standard Calculator Mode -->
+                <div class="buttons-grid" id="standardGrid">
+                    <!-- Row 1 -->
+                    <button class="btn btn-secondary" onclick="calculator.clear()">AC</button>
+                    <button class="btn btn-secondary" onclick="calculator.delete()">⌫</button>
+                    <button class="btn btn-secondary" onclick="calculator.chooseOperation('%')">%</button>
+                    <button class="btn btn-operator" onclick="calculator.chooseOperation('÷')">÷</button>
+
+                    <!-- Row 2 -->
+                    <button class="btn btn-number" onclick="calculator.appendNumber('7')">7</button>
+                    <button class="btn btn-number" onclick="calculator.appendNumber('8')">8</button>
+                    <button class="btn btn-number" onclick="calculator.appendNumber('9')">9</button>
+                    <button class="btn btn-operator" onclick="calculator.chooseOperation('×')">×</button>
+
+                    <!-- Row 3 -->
+                    <button class="btn btn-number" onclick="calculator.appendNumber('4')">4</button>
+                    <button class="btn btn-number" onclick="calculator.appendNumber('5')">5</button>
+                    <button class="btn btn-number" onclick="calculator.appendNumber('6')">6</button>
+                    <button class="btn btn-operator" onclick="calculator.chooseOperation('-')">−</button>
+
+                    <!-- Row 4 -->
+                    <button class="btn btn-number" onclick="calculator.appendNumber('1')">1</button>
+                    <button class="btn btn-number" onclick="calculator.appendNumber('2')">2</button>
+                    <button class="btn btn-number" onclick="calculator.appendNumber('3')">3</button>
+                    <button class="btn btn-operator" onclick="calculator.chooseOperation('+')">+</button>
+
+                    <!-- Row 5 -->
+                    <button class="btn btn-number btn-zero" onclick="calculator.appendNumber('0')">0</button>
+                    <button class="btn btn-number" onclick="calculator.appendNumber('.')">.</button>
+                    <button class="btn btn-primary" onclick="calculator.compute()">=</button>
+                </div>
+
+
+            </div>
+        </main>
+
+        <!-- History Panel -->
+        <div class="history-panel hidden" id="historyPanel">
+            <div class="history-header">
+                <h3>History</h3>
+                <button class="close-btn" id="closeHistoryBtn">×</button>
+            </div>
+            <div class="history-content" id="historyContent">
+                <p class="history-empty">No calculations yet</p>
+            </div>
+            <div class="history-footer">
+                <button class="btn-clear-history" id="clearHistoryBtn">Clear All</button>
+            </div>
+        </div>
+
+        <!-- About/Info Modal -->
+        <div class="info-modal hidden" id="infoModal">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-logo">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="url(#modalGradient)"/>
+                            <path d="M12 18h24M12 24h24M12 30h24M18 12v24M30 12v24" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="modalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#FBBF24"/>
+                                    <stop offset="100%" style="stop-color:#F59E0B"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <button class="close-btn" id="closeInfoBtn">×</button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="modal-title">CALCETIX</h2>
+                    <p class="modal-subtitle">Beautiful calculator made simple</p>
+                    <p class="modal-tagline">by Lunetix</p>
+                    
+                    <div class="version-info">
+                        <div class="version-item">
+                            <span class="version-label">Version</span>
+                            <span class="version-value">1.0.0</span>
+                        </div>
+                        <div class="version-item">
+                            <span class="version-label">Release Date</span>
+                            <span class="version-value">December 2025</span>
+                        </div>
+                        <div class="version-item">
+                            <span class="version-label">Build</span>
+                            <span class="version-value">Initial Release</span>
+                        </div>
+                    </div>
+
+                    <div class="features-list">
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Calculation History</li>
+                            <li>Dark/Light Themes</li>
+                            <li>Sound Effects</li>
+                            <li>Gesture Support</li>
+                            <li>PWA Support</li>
+                        </ul>
+                    </div>
+
+                    <div class="brand-info">
+                        <p class="brand-motto">"Precision in every calculation"</p>
+                        <p class="copyright">© 2025 Lunetix. All rights reserved.</p>
+                        <p class="website">lunetix.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
