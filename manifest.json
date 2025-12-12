@@ -3,13 +3,13 @@
   "short_name": "Calcetix",
   "version": "1.0.0",
   "description": "Beautiful calculator made simple by Lunetix. Precision in every calculation.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "fullscreen",
   "orientation": "portrait-primary",
   "theme_color": "#FBBF24",
   "background_color": "#1F2937",
   "lang": "en",
-  "scope": "/",
+  "scope": "./",
   "categories": ["productivity", "utilities"],
   "icons": [
     {

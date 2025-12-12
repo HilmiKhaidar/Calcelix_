@@ -4,14 +4,14 @@
   "description": "Beautiful calculator made simple - by Lunetix",
   "main": "index.html",
   "scripts": {
-    "dev": "live-server --port=3000",
-    "build": "echo 'Build complete'",
-    "start": "live-server --port=3000"
+    "dev": "echo 'Development mode'",
+    "build": "echo 'Static build complete'",
+    "start": "echo 'Static site ready'"
   },
-  "keywords": ["calculator", "lunetix", "calcetix", "math"],
+  "keywords": ["calculator", "lunetix", "calcetix", "math", "pwa"],
   "author": "Lunetix Team",
   "license": "MIT",
-  "devDependencies": {
-    "live-server": "^1.2.2"
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
